@@ -17,6 +17,16 @@ class Store < ActiveRecord::Base
   has_many :employees
   validates :name, length: { minimum: 3 }
   validates :annual_revenue, numericality: { only_integer: true, greater_than: 0 }
+  validate :carries_at_least_one_type_of_apparrel
+
+  def carries_at_least_one_type_of_apparrel
+    if mens_apparel == true || womens_apparel == true
+    else
+      errors.add(:inventory, "needs to have at least one type of inventory")
+    end
+  end
+
+
 
 end
 store1 = Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: true, womens_apparel: true)
