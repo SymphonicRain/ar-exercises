@@ -23,6 +23,7 @@ store1 = Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: tru
 
 =end
 class Store < ActiveRecord::Base
+  has_many :employees
 end
 store1 = Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: true, womens_apparel: true)
 store2 = Store.create(name: "Richmond", annual_revenue: 1260000, mens_apparel: false, womens_apparel: true)
