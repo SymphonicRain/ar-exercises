@@ -11,6 +11,12 @@ puts "----------"
 # Your code goes here ...
 class Employee < ActiveRecord::Base
   belongs_to :store
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :hourly_rate, numericality: { only_integer: true, greater_than: 39, less_than: 201 }
+  validates :last_name, presence: true
+
+
 end
 @store1.employees.create(first_name: "Khurram", last_name: "Virani", hourly_rate: 60)
 @store1.employees.create(first_name: "Bob", last_name: "Buttons", hourly_rate: 70)

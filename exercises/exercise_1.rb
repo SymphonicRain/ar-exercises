@@ -6,15 +6,6 @@ puts "----------"
 
 # Your code goes below here ...
 
-# stores = Store.all
-# id             | bigint                         |           | not null | nextval('stores_id_seq'::regclass)
-# name           | character varying              |           |          |
-# annual_revenue | integer                        |           |          |
-# mens_apparel   | boolean                        |           |          |
-# womens_apparel | boolean                        |           |          |
-# created_at     | timestamp(6) without time zone |           | not null |
-# updated_at     | timestamp(6) without time zone
-
 =begin
 class Store < ApplicationRecord
   self.primary_key = "id"
@@ -24,6 +15,9 @@ store1 = Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: tru
 =end
 class Store < ActiveRecord::Base
   has_many :employees
+  validates :name, length: { minimum: 3 }
+  validates :annual_revenue, numericality: { only_integer: true, greater_than: 0 }
+
 end
 store1 = Store.create(name: "Burnaby", annual_revenue: 300000, mens_apparel: true, womens_apparel: true)
 store2 = Store.create(name: "Richmond", annual_revenue: 1260000, mens_apparel: false, womens_apparel: true)
